@@ -1,0 +1,48 @@
+.navbar {
+  grid-area: navbar;
+  background-color: #2e3a4c;
+  padding: 20px;
+  max-width: 230px;
+}
+
+.navbar__navList {
+  display: grid;
+  gap: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__link {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar__link:hover {
+  opacity: 0.5;
+}
+
+.navbar__link_active{
+  color: gold;
+  text-decoration: none;
+  cursor: default;
+}
+
+.navbar__frindsItem {
+  padding-top: 50px;
+}
+
+.navbar__friendsList {
+  min-width: 110px;
+  max-width: 160px;
+  max-height: 160px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 5px;
+  list-style: none;
+  column-gap: 5px;
+  margin: 0;
+  padding: 0;
+}

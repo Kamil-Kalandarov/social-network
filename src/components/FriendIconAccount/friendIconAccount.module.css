@@ -1,0 +1,23 @@
+.friendIconAccount__container {
+  display: flex;
+  flex-direction: column;
+  max-width: 50px;
+  max-height: 103px;
+  padding-top: 5px;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.friendIconAccount__container:hover {
+  opacity: 50%;
+}
+
+.friendIconAccount__image {
+  max-width: 50px;
+  border-radius: 50%;
+}
+
+.friendIconAccount__name {
+  color: #ffff;
+  margin: 0;
+}

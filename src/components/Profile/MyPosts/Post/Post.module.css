@@ -1,0 +1,10 @@
+.profile__postContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile__postImage {
+  max-width: 50px;
+  border-radius: 50%;
+}

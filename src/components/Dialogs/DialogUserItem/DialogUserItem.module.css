@@ -1,0 +1,10 @@
+.dialogs__userDilogContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dialogs__dialogUserItemImage {
+  max-width: 50px;
+  border-radius: 50%;
+}

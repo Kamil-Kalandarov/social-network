@@ -1,0 +1,43 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.dialogs__userListItems {
+  display: grid;
+  gap: 20px;
+  list-style: none;
+  padding: 20px 0 0 20px;
+  margin: 0;
+}
+
+.dialog__messegesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dialogs__messagesListItems {
+  display: grid;
+  gap: 20px;
+  list-style: none;
+  padding: 20px 0 0 20px;
+  margin: 0;
+}
+
+.dialogs__messagesFrom {
+  display: flex;
+  gap: 10px;
+}
+
+.dialogs__messageTextArea {
+  align-self: center;
+}
+
+.dialogs__messagesFormButton {
+  min-width: 150px;
+  max-width: 300px;
+  height: 30px;
+  align-self: end;
+  cursor: pointer;
+}

@@ -1,0 +1,16 @@
+.app {
+  max-width: 1240px;
+  display: grid;
+  grid-template-areas: 
+  'header header'
+  'navbar main';
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 1fr 5fr;
+  margin: 0 auto;
+}
+
+.main {
+  max-width: 100%;
+  grid-area: main;
+  background-color: #edeef0;
+}
