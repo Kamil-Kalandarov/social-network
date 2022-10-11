@@ -7,7 +7,10 @@ const Profile = (props) => {
   return (
     <section className={styles.profile}>
       <ProfileInfo />
-      <MyPosts postsData={props.state.postsData}/>
+      <MyPosts 
+        postsData={props.profilePageState.postsData} 
+        newPostText={props.profilePageState.newPostText} 
+        dispatch={props.dispatch}/>
     </section>
   );
 };
