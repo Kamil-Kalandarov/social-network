@@ -1,29 +1,25 @@
-import React, { createRef } from "react";
+import React from "react";
 import styles from './Dialogs.module.css';
 import DialogUserItem from "./DialogUserItem/DialogUserItem";
 import Message from "./Message/Message";
-import { addNewMessageActionCreator, updateNewMessageTextCreator,  } from "../../redux/state";
+import { addNewMessageActionCreator, updateNewMessageTextCreator,  } from "../../redux/dialogsReducer";
 
 const Dialogs = (props) => {
-
-  const state = props.store.getState().messagesPage
   
-  const userDialogsElements = state.userDialogsData
+  const userDialogsElements = props.messagesPageState.userDialogsData
     .map(userDialog => <DialogUserItem key={userDialog.name} name={userDialog.name} id={userDialog.id} src={userDialog.src} />);
   
-  const userMessagesElements = state.messagesData
+  const userMessagesElements = props.messagesPageState.messagesData
     .map(message => <Message key={message.message} message={message.message} id={message.id}/>);
-
-  const messageTextAreaRef = createRef();
 
   const sendMessage = (event) => {
     event.preventDefault()
-    props.store.dispatch(addNewMessageActionCreator())
+    props.dispatch(addNewMessageActionCreator())
   };
 
-  const onMessageText = () => {
-    const messageTextAreaValue = messageTextAreaRef.current.value
-    props.store.dispatch(updateNewMessageTextCreator(messageTextAreaValue))
+  const onMessageText = (event) => {
+    const messageTextAreaValue = event.target.value
+    props.dispatch(updateNewMessageTextCreator(messageTextAreaValue))
   };
 
   return (
@@ -38,8 +34,7 @@ const Dialogs = (props) => {
         <form className={styles.dialogs__messagesFrom}>
           <textarea 
             className={styles.dialogs__messageTextArea} 
-            ref={messageTextAreaRef}
-            value={state.newMessageText}
+            value={props.messagesPageState.newMessageText}
             onChange={onMessageText}
           />
           <button className={styles.dialogs__messagesFormButton} onClick={sendMessage}>send message</button>

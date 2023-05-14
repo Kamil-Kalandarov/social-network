@@ -1,22 +1,20 @@
-import React, { createRef } from "react";
+import React from "react";
 import styles from './MyPosts.module.css'
 import Post from "./Post/Post";
-import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/state";
+import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/profileReducer";
 
 const MyPosts = (props) => {
   
   const postsElement = props.postsData
     .map(post => <Post key={post.id} message={post.message} likeCount={post.likeCount} src={post.src}/>);
 
-  const postTexAreaRef = createRef();
-
   const addPost = (event) => {
     event.preventDefault()
     props.dispatch(addPostActionCreator())
   };
 
-  const onPostChange = () => {
-    const postTextAreaValue = postTexAreaRef.current.value
+  const onPostChange = (event) => {
+    const postTextAreaValue = event.target.value
     props.dispatch(updateNewPostTextActionCreator(postTextAreaValue))
   };
 
@@ -26,7 +24,6 @@ const MyPosts = (props) => {
       <form className={styles.profile__postForm}>
         <textarea 
           className={styles.profile__textAreaPost} 
-          ref={postTexAreaRef} 
           value={props.newPostText}
           onChange={onPostChange} 
         />

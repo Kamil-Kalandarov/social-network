@@ -1,4 +1,6 @@
 const friendsListReducer = (state, action) => {
 
-    return state
+  return state
 };
+
+export default friendsListReducer;
