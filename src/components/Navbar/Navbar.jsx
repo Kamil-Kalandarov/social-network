@@ -2,12 +2,18 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from './Navbar.module.css';
 import FriendIconAccount from "../FriendIconAccount/FriendIconAccount";
+import { useSelector } from "react-redux";
 
 const setActive = ({isActive}) => isActive ? styles.navbar__link_active : styles.navbar__link;
 
 const Navbar = (props) => {
+
+  /* const { friendsData } = useSelector(store => store.friendsList)
+
+  let friendsListElements = friendsData
+    .map(friend => <FriendIconAccount key={friend.id} name={friend.name} id={friend.id} src={friend.src} />) */
   
-  let friendsListElements = props.state.friendsData
+  let friendsListElements = props.friendsList.friendsData
     .map(friend => <FriendIconAccount key={friend.id} name={friend.name} id={friend.id} src={friend.src} />)
 
   return (

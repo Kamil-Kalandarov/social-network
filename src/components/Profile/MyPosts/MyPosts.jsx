@@ -4,18 +4,20 @@ import Post from "./Post/Post";
 import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/profileReducer";
 
 const MyPosts = (props) => {
-  
+
   const postsElement = props.postsData
     .map(post => <Post key={post.id} message={post.message} likeCount={post.likeCount} src={post.src}/>);
 
   const addPost = (event) => {
     event.preventDefault()
-    props.dispatch(addPostActionCreator())
+    props.addPost()
+    /* props.dispatch(addPostActionCreator()) */
   };
 
   const onPostChange = (event) => {
     const postTextAreaValue = event.target.value
-    props.dispatch(updateNewPostTextActionCreator(postTextAreaValue))
+    props.updateNewPostText(postTextAreaValue)
+    /* props.dispatch(updateNewPostTextActionCreator(postTextAreaValue)) */
   };
 
   return (
@@ -34,6 +36,6 @@ const MyPosts = (props) => {
       </ul>
     </section>
   )
-}
+};
 
-export default MyPosts
+export default MyPosts;

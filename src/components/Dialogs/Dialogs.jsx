@@ -2,24 +2,26 @@ import React from "react";
 import styles from './Dialogs.module.css';
 import DialogUserItem from "./DialogUserItem/DialogUserItem";
 import Message from "./Message/Message";
-import { addNewMessageActionCreator, updateNewMessageTextCreator,  } from "../../redux/dialogsReducer";
+/* import { addNewMessageActionCreator, updateNewMessageTextCreator,  } from "../../redux/dialogsReducer"; */
 
 const Dialogs = (props) => {
   
-  const userDialogsElements = props.messagesPageState.userDialogsData
+  const userDialogsElements = props.userDialogsData
     .map(userDialog => <DialogUserItem key={userDialog.name} name={userDialog.name} id={userDialog.id} src={userDialog.src} />);
   
-  const userMessagesElements = props.messagesPageState.messagesData
+  const userMessagesElements = props.messagesData
     .map(message => <Message key={message.message} message={message.message} id={message.id}/>);
 
   const sendMessage = (event) => {
     event.preventDefault()
-    props.dispatch(addNewMessageActionCreator())
+    props.sendMessage()
+    /* props.dispatch(addNewMessageActionCreator()) */
   };
 
   const onMessageText = (event) => {
     const messageTextAreaValue = event.target.value
-    props.dispatch(updateNewMessageTextCreator(messageTextAreaValue))
+    props.onMessageText(messageTextAreaValue)
+    /* props.dispatch(updateNewMessageTextCreator(messageTextAreaValue)) */
   };
 
   return (
@@ -34,7 +36,7 @@ const Dialogs = (props) => {
         <form className={styles.dialogs__messagesFrom}>
           <textarea 
             className={styles.dialogs__messageTextArea} 
-            value={props.messagesPageState.newMessageText}
+            value={props.newMessageText}
             onChange={onMessageText}
           />
           <button className={styles.dialogs__messagesFormButton} onClick={sendMessage}>send message</button>
