@@ -1,0 +1,67 @@
+.user {
+
+}
+
+.users__navigation {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* .users__pagesList {
+  max-width: 500px;
+  list-style: none;
+  display: flex;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+} */
+
+/* .users__pageItem {
+  font-weight: 400;
+} */
+
+/* .users__pageItemDisabled {
+  
+}
+
+.users__selectedPageItem {
+  color: red;
+  font-weight: 700;
+}
+
+.users__previousPage {
+  color: red;
+}
+
+.users__nextPage {
+  display: box;
+  color: red;
+} */
+
+.users__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.users__userContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.users__userAvatar {
+  max-width: 80px;
+  border-radius: 80%;
+}
+
+.users__info {
+  display: flex;
+}
+
+.users__about {
+  display: flex;
+  gap: 50px;
+}

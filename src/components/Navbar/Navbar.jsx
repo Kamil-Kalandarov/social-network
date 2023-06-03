@@ -22,8 +22,9 @@ const Navbar = (props) => {
         <ul className={styles.navbar__navList}>
           <li><NavLink to='/profile' className={setActive}>Profile</NavLink></li>
           <li><NavLink to='/dialogs' className={setActive}>Messages</NavLink></li>
-          <li><a className={styles.navbar__link}>News</a></li>
-          <li><a className={styles.navbar__link}>Settings</a></li>
+          <li><NavLink to='/' className={setActive}>News</NavLink></li>
+          <li><NavLink to='/' className={setActive}>Music</NavLink></li>
+          <li><NavLink to='/users' className={setActive}>Find Users</NavLink></li>
           <li className={styles.navbar__frindsItem}>
             <a className={`${styles.navbar__link} navbar__friendsLink`}>Friends</a>
             <ul className={styles.navbar__friendsList}>

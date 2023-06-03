@@ -1,0 +1,19 @@
+.users__userContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.users__userAvatar {
+  max-width: 50px;
+  border-radius: 50%;
+}
+
+.users__info {
+  display: flex;
+}
+
+.users__about {
+  display: flex;
+  gap: 50px;
+}

@@ -2,7 +2,6 @@ import React from "react";
 import styles from './Dialogs.module.css';
 import DialogUserItem from "./DialogUserItem/DialogUserItem";
 import Message from "./Message/Message";
-/* import { addNewMessageActionCreator, updateNewMessageTextCreator,  } from "../../redux/dialogsReducer"; */
 
 const Dialogs = (props) => {
   
@@ -15,13 +14,11 @@ const Dialogs = (props) => {
   const sendMessage = (event) => {
     event.preventDefault()
     props.sendMessage()
-    /* props.dispatch(addNewMessageActionCreator()) */
   };
 
   const onMessageText = (event) => {
     const messageTextAreaValue = event.target.value
     props.onMessageText(messageTextAreaValue)
-    /* props.dispatch(updateNewMessageTextCreator(messageTextAreaValue)) */
   };
 
   return (

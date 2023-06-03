@@ -8,12 +8,7 @@ const Profile = () => {
   return (
     <section className={styles.profile}>
       <ProfileInfo />
-      <MyPostsContainer /* store={props.store} */ />
-      {/* <MyPosts 
-        postsData={props.profilePageState.postsData} 
-        newPostText={props.profilePageState.newPostText} 
-        dispatch={props.dispatch}
-      /> */}
+      <MyPostsContainer />
     </section>
   );
 };
