@@ -5,12 +5,14 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_PREV_PAGE = 'SET_PREV_PAGE';
 const SET_NEXT_PAGE = 'SET_NEXT_PAGE';
+const TOGGLE_PRELOADER = 'TOGGLE_PRELOADER';
 
 const initialState = {
   usersData: [],
   pageSize: 10,
   totalUsersCount: 0,
   currentPage: 1,
+  isLoading: false,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -39,30 +41,35 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state, 
         usersData: action.users
-      }
+      };
     case SET_TOTAL_USERS_COUNT:
       return {
         ...state,
         totalUsersCount: action.totalCount
-      }
+      };
     case SET_CURRENT_PAGE:
       return {
         ...state,
         currentPage: action.currentPage
-      }
+      };
       case SET_PREV_PAGE:
         return {
           ...state,
           currentPage: action.currentPage - 1
-        }
+        };
       case SET_NEXT_PAGE:
         return {
           ...state,
           currentPage: action.currentPage + 1
+        };
+      case TOGGLE_PRELOADER:
+        return {
+          ...state,
+          isLoading: action.loaderSatus
         }
     default:
       return state;
-  }
+  };
 };
 
 export const followActionCreator = (userId) => {
@@ -116,6 +123,14 @@ export const setNextPage = (currentPage) => {
   return {
     type: SET_NEXT_PAGE,
     currentPage
+  };
+};
+
+// переключение прелоадера
+export const togglePreloader = (loaderSatus) => {
+  return {
+    type: TOGGLE_PRELOADER,
+    loaderSatus
   };
 };
 

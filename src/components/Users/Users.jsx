@@ -4,9 +4,7 @@ import defaultAvatar from '../../images/Leonid_Medvedovskij.jpg';
 import Pagination from '../Pagination/Pagination';
 
 const Users = (props) => {
-
   const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
   const pages = [];
   for (let i=1; i <= pagesCount; i++) {
     pages.push(i)
@@ -14,7 +12,9 @@ const Users = (props) => {
 
   const onUsersPageClick = (selectedPage) => {
     const currentPage = selectedPage.selected + 1
+    console.log('selectedPage', currentPage);
     props.onUsersPageClick(currentPage)
+    console.log('currentPage', props.currentPage);
   };
 
   return (
@@ -26,28 +26,14 @@ const Users = (props) => {
           previousLabel="<"
           nextLabel=">"
           onPageChange={onUsersPageClick}
-          pageRangeDisplayed={2}
-          marginPagesDisplayed={1}
+          pageRangeDisplayed={5}
+          marginPagesDisplayed={6}
           pageCount={pagesCount}
           renderOnZeroPageCount={null}
+          /* initialPage={props.currentPage} */
+          forcePage={props.currentPage - 1}
         /> 
       </div>
-      {/* <nav className={styles.users__navigation}>
-        <span onClick={(e) => {props.onPrevUsersPage(props.currentPage)}}>{'<'}</span>
-        <ul className={styles.users__pagesList}>
-          {pages.map(page => {
-            return (
-              <li 
-                className={props.currentPage === page ? styles.users__selectedPageItem : styles.users__pageItem}
-                onClick={(e) => {props.onUsersPageClick(page)}}
-              >
-              {page}
-              </li>
-            )
-          })}
-        </ul>
-        <span onClick={(e) => {props.onNextUsersPage(props.currentPage)}}>{'>'}</span>
-      </nav> */}
       <ul className={styles.users__list}>
         { props.usersData.map(user => {
           return (
@@ -81,3 +67,22 @@ const Users = (props) => {
 };
 
 export default Users;
+
+
+ // eslint-disable-next-line no-lone-blocks
+ {/* <nav className={styles.users__navigation}>
+        <span onClick={(e) => {props.onPrevUsersPage(props.currentPage)}}>{'<'}</span>
+        <ul className={styles.users__pagesList}>
+          {pages.map(page => {
+            return (
+              <li 
+                className={props.currentPage === page ? styles.users__selectedPageItem : styles.users__pageItem}
+                onClick={(e) => {props.onUsersPageClick(page)}}
+              >
+              {page}
+              </li>
+            )
+          })}
+        </ul>
+        <span onClick={(e) => {props.onNextUsersPage(props.currentPage)}}>{'>'}</span>
+      </nav> */}

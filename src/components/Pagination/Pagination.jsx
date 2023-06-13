@@ -20,6 +20,8 @@ const Pagination = (props) => {
       disabledClassName={styles.paginationDisabledBtn}
       activeClassName={styles.paginationActiveBtn}
       breakLinkClassName={styles.paginationBreakeBtn}
+      forcePage={props.forcePage}
+      /* initialPage={props.currentPage} */
     /> 
   );
 };
