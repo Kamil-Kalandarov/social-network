@@ -6,19 +6,18 @@ import Pagination from '../Pagination/Pagination';
 const Users = (props) => {
   const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   const pages = [];
+  
   for (let i=1; i <= pagesCount; i++) {
     pages.push(i)
   };
 
   const onUsersPageClick = (selectedPage) => {
     const currentPage = selectedPage.selected + 1
-    console.log('selectedPage', currentPage);
     props.onUsersPageClick(currentPage)
-    console.log('currentPage', props.currentPage);
   };
 
   return (
-    <main className={styles.users}>
+    <section className={styles.users}>
       <h2>Users</h2>
       <div className={styles.users__navigation}>
         <Pagination
@@ -30,7 +29,6 @@ const Users = (props) => {
           marginPagesDisplayed={6}
           pageCount={pagesCount}
           renderOnZeroPageCount={null}
-          /* initialPage={props.currentPage} */
           forcePage={props.currentPage - 1}
         /> 
       </div>
@@ -62,7 +60,7 @@ const Users = (props) => {
           })
         }
       </ul>
-    </main>
+    </section>
   );
 };
 

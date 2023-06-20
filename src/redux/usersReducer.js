@@ -72,14 +72,14 @@ const usersReducer = (state = initialState, action) => {
   };
 };
 
-export const followActionCreator = (userId) => {
+export const follow = (userId) => {
   return {
     type: FOLLOW,
     userId
   };
 };
 
-export const unFollowActionCreator = (userId) => {
+export const unFollow = (userId) => {
   return {
     type: UNFOLLOW,
     userId
@@ -87,7 +87,7 @@ export const unFollowActionCreator = (userId) => {
 };
 
 // добавление юзеров
-export const setUsersActionCreator = (users) => {
+export const setUsers = (users) => {
   return {
     type: SET_USERS,
     users
@@ -95,7 +95,7 @@ export const setUsersActionCreator = (users) => {
 };
 
 // добавление общего количества юзеров
-export const setTotalUsersActionCreator = (totalCount) => {
+export const setTotalUsers = (totalCount) => {
   return {
     type: SET_TOTAL_USERS_COUNT,
     totalCount

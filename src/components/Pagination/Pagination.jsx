@@ -21,7 +21,6 @@ const Pagination = (props) => {
       activeClassName={styles.paginationActiveBtn}
       breakLinkClassName={styles.paginationBreakeBtn}
       forcePage={props.forcePage}
-      /* initialPage={props.currentPage} */
     /> 
   );
 };

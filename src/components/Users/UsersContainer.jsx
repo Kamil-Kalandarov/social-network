@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Users from './Users';
 import { 
-  followActionCreator, 
-  setUsersActionCreator, 
-  unFollowActionCreator,
-  setTotalUsersActionCreator,
+  follow, 
+  setUsers, 
+  unFollow,
+  setTotalUsers,
   setCurrentPage,
   setPrevPage,
   setNextPage,
@@ -14,8 +14,7 @@ import {
 } from "../../redux/usersReducer";
 import Preloader from '../Preloader/Preloade';
 
-// контейнерная компонента для BLL оборачивается в другую контейнерную компоненту, которая обращается к store
-
+/* UsersContainer выполняет AJAX запросы, а данные из store получает от другой контейнерной компоненты через 'connect' */
 class UsersContainer extends React.Component {
 
   componentDidMount() {
@@ -24,7 +23,7 @@ class UsersContainer extends React.Component {
       .then(response => {
         this.props.togglePreloader(false)
         this.props.setUsers(response.data.items)
-        this.props.setTotalUsersCount(response.data.totalCount)
+        this.props.setTotalUsers(response.data.totalCount)
       });
   };
 
@@ -58,21 +57,22 @@ class UsersContainer extends React.Component {
       });
   };
 
+  /* компонента Users получает данные и колбэки от UsersContainer через пропсы */
   render() {
     return (
       <>
         { this.props.isLoading 
           ? <Preloader /> 
           : <Users 
-          usersData={this.props.usersData}
-          pageSize={this.props.pageSize}
-          totalUsersCount={this.props.totalUsersCount}
-          currentPage={this.props.currentPage}
-          onUsersPageClick={this.onUsersPageClick}
-          onPrevUsersPage={this.onPrevUsersPage}
-          onNextUsersPage={this.onNextUsersPage}
-          follow={this.props.follow}
-          unFollow={this.props.unfollow}
+              usersData={this.props.usersData}
+              pageSize={this.props.pageSize}
+              totalUsersCount={this.props.totalUsersCount}
+              currentPage={this.props.currentPage}
+              onUsersPageClick={this.onUsersPageClick}
+              onPrevUsersPage={this.onPrevUsersPage}
+              onNextUsersPage={this.onNextUsersPage}
+              follow={this.props.follow}
+              unFollow={this.props.unfollow}
           />
         }
       </>
@@ -80,6 +80,7 @@ class UsersContainer extends React.Component {
   };
 };
 
+/* данные из store, которы передаеются ниже в контейнерную компоненту */
 const mapStateToProps = (state) => {
   return {
     usersData: state.usersPage.usersData,
@@ -90,33 +91,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId) => {
-      dispatch(followActionCreator(userId))
-    },
-    unfollow: (userId) => {
-      dispatch(unFollowActionCreator(userId))
-    },
-    setUsers: (users) => {
-      dispatch(setUsersActionCreator(users))
-    },
-    setTotalUsersCount: (totalCount) => {
-      dispatch(setTotalUsersActionCreator(totalCount))
-    },
-    setCurrentPage: (currentPage) => {
-      dispatch(setCurrentPage(currentPage))
-    },
-    setPrevPage: (currentPage) => {
-      dispatch(setPrevPage(currentPage))
-    },
-    setNextPage: (currentPage) => {
-      dispatch(setNextPage(currentPage))
-    },
-    togglePreloader: (loaderStatus) => {
-      dispatch(togglePreloader(loaderStatus))
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps) (UsersContainer);
+/* при помощи 'connect' создается контейнерная компонента, которая взаимодействует со 'store' 
+и передает данные другой контейнерной компоненте (UsersContainer).
+UsersContainer выполняет AJAX запросы, и уже передает дальше данные в презентационную компоненту 'Users' */
+export default connect(mapStateToProps, {
+  follow,
+  unFollow,
+  setUsers,
+  setTotalUsers,
+  setCurrentPage,
+  setPrevPage,
+  setNextPage,
+  togglePreloader
+})(UsersContainer);
