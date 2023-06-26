@@ -3,7 +3,6 @@ import styles from './MyPosts.module.css'
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-  console.log(props);
 
   const postsElement = props.postsData
     .map(post => <Post key={post.id} message={post.message} likeCount={post.likeCount} src={post.avatar}/>);

@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 const initialState = {
   postsData: [
@@ -9,7 +10,8 @@ const initialState = {
     {id: 4, avatar: 'https://clck.ru/f4ZDf', message: "It's my third post!", likeCount: 33},
     {id: 5, avatar: 'https://clck.ru/f4ZDf', message: "It's my fiveth post!", likeCount: 33},
   ],
-  newPostText: ''
+  newPostText: '',
+  profile: null,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -20,17 +22,22 @@ const profileReducer = (state = initialState, action) => {
         avatar: 'https://clck.ru/f4ZDf',
         message: state.newPostText, 
         likeCount: 0
-      };
+      }
       return {
         ...state,
         postsData: [...state.postsData, newPost],
         newPostText: ''
-      }
+      };
     case UPDATE_NEW_POST_TEXT:
       return {
         ...state,
         newPostText: action.newText
-      }
+      };
+      case SET_USER_PROFILE:
+        return {
+          ...state,
+          profile: action.userProfile
+        };
     default: 
       return state
   };
@@ -46,6 +53,13 @@ export const updateNewPostTextActionCreator = (postTextAreaValue) => {
   return {
     type: UPDATE_NEW_POST_TEXT, 
     newText: postTextAreaValue
+  };
+};
+
+export const setUserProfile = (userProfile) => {
+  return {
+    type: SET_USER_PROFILE, 
+    userProfile: userProfile
   };
 };
 

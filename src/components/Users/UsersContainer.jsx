@@ -28,6 +28,7 @@ class UsersContainer extends React.Component {
   };
 
   onUsersPageClick = (selectedPage) => {
+    console.log(selectedPage);
     this.props.setCurrentPage(selectedPage)
     this.props.togglePreloader(true)
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${selectedPage}&count=${this.props.pageSize}`)

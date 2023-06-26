@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './users.module.css';
 import defaultAvatar from '../../images/Leonid_Medvedovskij.jpg';
 import Pagination from '../Pagination/Pagination';
+import { NavLink } from 'react-router-dom';
 
 const Users = (props) => {
   const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -38,7 +39,13 @@ const Users = (props) => {
             <li key={user.id}>
               <div className={styles.users__userContent}>
                 <div>
-                  <div><img className={styles.users__userAvatar} src={user.photos.small !== null ? user.photos.small : defaultAvatar} alt='user-avatar'/></div>
+                  <div>
+                    <NavLink to={'/profile/' + user.id}><img 
+                      className={styles.users__userAvatar} 
+                      src={user.photos.small !== null ? user.photos.small : defaultAvatar} 
+                      alt='user-avatar'/>
+                    </NavLink>
+                  </div>
                   { user.followed
                     ? <button onClick={() => {props.unFollow(user.id)}}>unfollow</button> 
                     : <button onClick={() => {props.follow(user.id)}}>follow</button> 
@@ -46,7 +53,7 @@ const Users = (props) => {
                 </div>
               <div className={styles.users__about}>
                 <div>
-                  <p>{user.name}</p>
+                  <NavLink to={'/profile/' + user.id}><p>{user.name}</p></NavLink>
                   <p>{user.status}</p>
                 </div>
                 <div className={styles.users__location}>

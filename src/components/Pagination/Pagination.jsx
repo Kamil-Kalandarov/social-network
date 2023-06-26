@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate';
 
 
 const Pagination = (props) => {
+
   return (
     <ReactPaginate
       breakLabel={props.breakLabel}

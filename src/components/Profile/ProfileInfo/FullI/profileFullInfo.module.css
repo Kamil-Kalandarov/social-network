@@ -1,0 +1,8 @@
+.profile__contacts {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__contactsTitle {
+  margin: 0;
+}
