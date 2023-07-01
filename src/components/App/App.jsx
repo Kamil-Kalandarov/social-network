@@ -7,7 +7,7 @@ import DialogsContainer from '../Dialogs/DialogsContainer';
 import NavbarContainer from '../Navbar/NavbarContainer';
 import UsersContainer from '../Users/UsersContainer';
 
-const App = (props) => {
+const App = () => {
   return (
     <div className={styles.app}>
       <Header />
@@ -15,14 +15,21 @@ const App = (props) => {
       <main className={styles.app__main}>
         <Routes>
           <Route 
+            path='/profile/:userId' 
+            element={<ProfileContainer />}
+          />
+          <Route 
             path='/profile/*' 
-            element={<ProfileContainer />}/>
+            element={<ProfileContainer />}
+          />
           <Route 
             path='/dialogs/*' 
-            element={<DialogsContainer />}/>
+            element={<DialogsContainer />}
+          />
           <Route 
             path='/users/*' 
-            element={<UsersContainer />}/>
+            element={<UsersContainer />}
+          />
         </Routes>
       </main>
     </div>

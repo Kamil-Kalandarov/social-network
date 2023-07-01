@@ -9,7 +9,6 @@ import gitHubIcon from '../../../../images/github.svg';
 
 const SocialLinks = (props) => {
   const contacts = props.contacts
-  console.log(contacts);
   return (
     <ul className={styles.socialLinks}>
       {contacts.facebook ? <a href={contacts.facebook}><img src={facebookIcon} alt='facebookIcon'/></a> : null}

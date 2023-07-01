@@ -5,7 +5,7 @@ import Users from './Users';
 import { 
   follow, 
   setUsers, 
-  unFollow,
+  unfollow,
   setTotalUsers,
   setCurrentPage,
   setPrevPage,
@@ -73,7 +73,7 @@ class UsersContainer extends React.Component {
               onPrevUsersPage={this.onPrevUsersPage}
               onNextUsersPage={this.onNextUsersPage}
               follow={this.props.follow}
-              unFollow={this.props.unfollow}
+              unfollow={this.props.unfollow}
           />
         }
       </>
@@ -97,7 +97,7 @@ const mapStateToProps = (state) => {
 UsersContainer выполняет AJAX запросы, и уже передает дальше данные в презентационную компоненту 'Users' */
 export default connect(mapStateToProps, {
   follow,
-  unFollow,
+  unfollow,
   setUsers,
   setTotalUsers,
   setCurrentPage,
