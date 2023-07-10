@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../Preloader/Preloade';
 import jobIcon from '../../../images/job.svg'
-import ProfileFullInfo from './FullI/ProfileFullInfo';
+import ProfileFullInfo from './ProfileFullInfo/ProfileFullInfo';
 
 const ProfileInfo = (props) => {
 

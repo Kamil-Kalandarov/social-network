@@ -3,9 +3,20 @@
   grid-area: header;
   background-color: #3f5d81;
   display: flex;
+  justify-content: space-between;
   gap: 10px;
+  padding: 0 10px;
 }
 
 .header__logo {
   max-height: 100%;
+}
+
+.header__buttonsContainer {
+  align-self: center;
+  color: #ffffff;
+}
+
+.header__button {
+  color: #ffffff;
 }

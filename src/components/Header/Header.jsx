@@ -1,11 +1,21 @@
 import React from "react";
 import styles from './Header.module.css'
+import { NavLink } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
+  console.log(props);
   return (
     <header className={styles.header}>
-      <img className={styles.header__logo} src="https://i.pinimg.com/474x/46/aa/6a/46aa6aca0cac7dd47b2d667ac20cc83d--watch-dogs--videogames.jpg"/>
-      <img className={styles.header__logo} src="https://staticctf.akamaized.net/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/1qX1CxH2ZWk5gCL4PU4idw/ede7a498a0d61e454f7f5d8aa19664e2/watchdogs1-logo-inline-white-shadow.png" />
+      <div className={styles.header__logoContainer}>
+        <img className={styles.header__logo} src="https://kurl.ru/cqIMc" alt="logo"/>
+        <img className={styles.header__logo} src="https://kurl.ru/BxGfX" alt="logo"/>
+      </div>
+      <div className={styles.header__buttonsContainer}>
+        {props.isAuthorized 
+          ? <p>{props.userName}</p>
+          : <NavLink to={'/login'} className={styles.header__button}>Login</NavLink>
+        }
+      </div>
     </header>
   )
 }

@@ -1,16 +1,16 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import styles from './App.module.css';
-import Header from '../Header/Header';
 import ProfileContainer from '../Profile/ProfileContainer';
 import DialogsContainer from '../Dialogs/DialogsContainer';
 import NavbarContainer from '../Navbar/NavbarContainer';
 import UsersContainer from '../Users/UsersContainer';
+import HeaderContainer from '../Header/HeaderContainer';
 
 const App = () => {
   return (
     <div className={styles.app}>
-      <Header />
+      <HeaderContainer />
       <NavbarContainer />
       <main className={styles.app__main}>
         <Routes>

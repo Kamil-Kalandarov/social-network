@@ -4,6 +4,7 @@ import dialogsReducer from "./dialogsReducer";
 import friendsListReducer from "./friendsListReducer";
 import usersReducer from "./usersReducer";
 import modalReducer from "./modalReducer";
+import authReducer from "./authReducer";
 
 export const rootReducer = combineReducers({
   profilePage: profileReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   friendsList: friendsListReducer,
   usersPage: usersReducer,
   modal: modalReducer,
+  auth: authReducer,
 });
