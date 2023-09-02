@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import { usersAPI } from '../../api/api';
 import Users from './Users';
 import { 
   follow, 
@@ -19,13 +19,14 @@ class UsersContainer extends React.Component {
 
   componentDidMount() {
     this.props.togglePreloader(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+    usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+    /* axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
       withCredentials: true,
-    })
-      .then(response => {
+    }) */
+      .then(data => {
         this.props.togglePreloader(false)
-        this.props.setUsers(response.data.items)
-        this.props.setTotalUsers(response.data.totalCount)
+        this.props.setUsers(data.items)
+        this.props.setTotalUsers(data.totalCount)
       });
   };
 
@@ -33,36 +34,39 @@ class UsersContainer extends React.Component {
     console.log(selectedPage);
     this.props.setCurrentPage(selectedPage)
     this.props.togglePreloader(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${selectedPage}&count=${this.props.pageSize}`, {
+    usersAPI.setCurrentUsersPage(selectedPage, this.props.pageSize)
+    /* axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${selectedPage}&count=${this.props.pageSize}`, {
       withCredentials: true,
-    })
-      .then(response => {
+    }) */
+      .then(data => {
         this.props.togglePreloader(false)
-        this.props.setUsers(response.data.items)
+        this.props.setUsers(data.items)
       });
   };
 
   onPrevUsersPage = (currentPage) => {
     this.props.togglePreloader(true)
     this.props.setPrevPage(currentPage)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage - 1}&count=${this.props.pageSize}`, {
+    usersAPI.setPrevUsersPage(currentPage - 1, this.props.pageSize)
+    /* axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage - 1}&count=${this.props.pageSize}`, {
       withCredentials: true,
-    })
-      .then(response => {
+    }) */
+      .then(data => {
         this.props.togglePreloader(false)
-        this.props.setUsers(response.data.items)
+        this.props.setUsers(data.items)
       });
   };
 
   onNextUsersPage = (currentPage) => {
     this.props.togglePreloader(true)
     this.props.setNextPage(currentPage)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage + 1}&count=${this.props.pageSize}`, {
+    usersAPI.setNextUsersPage(currentPage + 1, this.props.pageSize)
+    /* axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage + 1}&count=${this.props.pageSize}`, {
       withCredentials: true,
-    })
-      .then(response => {
+    }) */
+      .then(data => {
         this.props.togglePreloader(false)
-        this.props.setUsers(response.data.items)
+        this.props.setUsers(data.items)
       });
   };
 
