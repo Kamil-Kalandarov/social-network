@@ -3,6 +3,7 @@ import styles from './users.module.css';
 import defaultAvatar from '../../images/Leonid_Medvedovskij.jpg';
 import Pagination from '../Pagination/Pagination';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 const Users = (props) => {
   const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -47,8 +48,14 @@ const Users = (props) => {
                     </NavLink>
                   </div>
                   { user.followed
-                    ? <button onClick={() => {props.unfollow(user.id)}}>unfollow</button> 
-                    : <button onClick={() => {props.follow(user.id)}}>follow</button> 
+                    ? <button onClick={() => {
+                      axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, { withCredentials: true })
+                      props.unfollow(user.id)
+                    }}>unfollow</button> 
+                    : <button onClick={() => {
+                      axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, { withCredentials: true })
+                      props.follow(user.id)
+                    }}>follow</button> 
                   }
                 </div>
               <div className={styles.users__about}>

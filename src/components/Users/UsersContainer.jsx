@@ -19,7 +19,9 @@ class UsersContainer extends React.Component {
 
   componentDidMount() {
     this.props.togglePreloader(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+      withCredentials: true,
+    })
       .then(response => {
         this.props.togglePreloader(false)
         this.props.setUsers(response.data.items)
@@ -31,7 +33,9 @@ class UsersContainer extends React.Component {
     console.log(selectedPage);
     this.props.setCurrentPage(selectedPage)
     this.props.togglePreloader(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${selectedPage}&count=${this.props.pageSize}`)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${selectedPage}&count=${this.props.pageSize}`, {
+      withCredentials: true,
+    })
       .then(response => {
         this.props.togglePreloader(false)
         this.props.setUsers(response.data.items)
@@ -41,7 +45,9 @@ class UsersContainer extends React.Component {
   onPrevUsersPage = (currentPage) => {
     this.props.togglePreloader(true)
     this.props.setPrevPage(currentPage)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage - 1}&count=${this.props.pageSize}`)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage - 1}&count=${this.props.pageSize}`, {
+      withCredentials: true,
+    })
       .then(response => {
         this.props.togglePreloader(false)
         this.props.setUsers(response.data.items)
@@ -51,7 +57,9 @@ class UsersContainer extends React.Component {
   onNextUsersPage = (currentPage) => {
     this.props.togglePreloader(true)
     this.props.setNextPage(currentPage)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage + 1}&count=${this.props.pageSize}`)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage + 1}&count=${this.props.pageSize}`, {
+      withCredentials: true,
+    })
       .then(response => {
         this.props.togglePreloader(false)
         this.props.setUsers(response.data.items)
