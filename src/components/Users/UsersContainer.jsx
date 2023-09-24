@@ -11,6 +11,7 @@ import {
   setPrevPage,
   setNextPage,
   togglePreloader,
+  toggleFollowingProgress,
 } from "../../redux/usersReducer";
 import Preloader from '../Preloader/Preloade';
 
@@ -86,6 +87,8 @@ class UsersContainer extends React.Component {
               onNextUsersPage={this.onNextUsersPage}
               follow={this.props.follow}
               unfollow={this.props.unfollow}
+              followingInProgress={this.props.followingInProgress}
+              toggleFollowingProgress={this.props.toggleFollowingProgress}
           />
         }
       </>
@@ -101,6 +104,8 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isLoading: state.usersPage.isLoading,
+    followingInProgress: state.usersPage.followingInProgress,
+    toggleFollowingProgress: state.usersPage.toggleFollowingProgress,
   };
 };
 
@@ -110,6 +115,7 @@ UsersContainer выполняет AJAX запросы, и уже передае�
 export default connect(mapStateToProps, {
   follow,
   unfollow,
+  toggleFollowingProgress,
   setUsers,
   setTotalUsers,
   setCurrentPage,
