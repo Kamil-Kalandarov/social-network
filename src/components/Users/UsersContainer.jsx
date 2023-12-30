@@ -1,17 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { usersAPI } from '../../api/api';
 import Users from './Users';
 import { 
   follow, 
-  setUsers, 
   unfollow,
-  setTotalUsers,
   setCurrentPage,
-  setPrevPage,
-  setNextPage,
-  togglePreloader,
   toggleFollowingProgress,
+  getUsers,
+  followUser,
+  unfollowUser,
 } from "../../redux/usersReducer";
 import Preloader from '../Preloader/Preloade';
 
@@ -19,56 +16,26 @@ import Preloader from '../Preloader/Preloade';
 class UsersContainer extends React.Component {
 
   componentDidMount() {
-    this.props.togglePreloader(true)
+    this.props.getUsers(this.props.currentPage, this.props.pageSize)
+    /* this.props.togglePreloader(true)
     usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-    /* axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-      withCredentials: true,
-    }) */
       .then(data => {
         this.props.togglePreloader(false)
         this.props.setUsers(data.items)
         this.props.setTotalUsers(data.totalCount)
-      });
+      }); */
   };
 
   onUsersPageClick = (selectedPage) => {
-    console.log(selectedPage);
     this.props.setCurrentPage(selectedPage)
+    this.props.getUsers(selectedPage, this.props.pageSize)
+    /* this.props.setCurrentPage(selectedPage)
     this.props.togglePreloader(true)
-    usersAPI.setCurrentUsersPage(selectedPage, this.props.pageSize)
-    /* axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${selectedPage}&count=${this.props.pageSize}`, {
-      withCredentials: true,
-    }) */
+    usersAPI.getUsers(selectedPage, this.props.pageSize)
       .then(data => {
         this.props.togglePreloader(false)
         this.props.setUsers(data.items)
-      });
-  };
-
-  onPrevUsersPage = (currentPage) => {
-    this.props.togglePreloader(true)
-    this.props.setPrevPage(currentPage)
-    usersAPI.setPrevUsersPage(currentPage - 1, this.props.pageSize)
-    /* axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage - 1}&count=${this.props.pageSize}`, {
-      withCredentials: true,
-    }) */
-      .then(data => {
-        this.props.togglePreloader(false)
-        this.props.setUsers(data.items)
-      });
-  };
-
-  onNextUsersPage = (currentPage) => {
-    this.props.togglePreloader(true)
-    this.props.setNextPage(currentPage)
-    usersAPI.setNextUsersPage(currentPage + 1, this.props.pageSize)
-    /* axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage + 1}&count=${this.props.pageSize}`, {
-      withCredentials: true,
-    }) */
-      .then(data => {
-        this.props.togglePreloader(false)
-        this.props.setUsers(data.items)
-      });
+      }); */
   };
 
   /* компонента Users получает данные и колбэки от UsersContainer через пропсы */
@@ -83,12 +50,9 @@ class UsersContainer extends React.Component {
               totalUsersCount={this.props.totalUsersCount}
               currentPage={this.props.currentPage}
               onUsersPageClick={this.onUsersPageClick}
-              onPrevUsersPage={this.onPrevUsersPage}
-              onNextUsersPage={this.onNextUsersPage}
-              follow={this.props.follow}
-              unfollow={this.props.unfollow}
+              follow={this.props.followUser}
+              unfollow={this.props.unfollowUser}
               followingInProgress={this.props.followingInProgress}
-              toggleFollowingProgress={this.props.toggleFollowingProgress}
           />
         }
       </>
@@ -105,21 +69,11 @@ const mapStateToProps = (state) => {
     currentPage: state.usersPage.currentPage,
     isLoading: state.usersPage.isLoading,
     followingInProgress: state.usersPage.followingInProgress,
-    toggleFollowingProgress: state.usersPage.toggleFollowingProgress,
   };
 };
 
 /* при помощи 'connect' создается контейнерная компонента, которая взаимодействует со 'store' 
 и передает данные другой контейнерной компоненте (UsersContainer).
 UsersContainer выполняет AJAX запросы, и уже передает дальше данные в презентационную компоненту 'Users' */
-export default connect(mapStateToProps, {
-  follow,
-  unfollow,
-  toggleFollowingProgress,
-  setUsers,
-  setTotalUsers,
-  setCurrentPage,
-  setPrevPage,
-  setNextPage,
-  togglePreloader
-})(UsersContainer);
+export default connect(mapStateToProps, 
+{ toggleFollowingProgress, setCurrentPage, getUsers, followUser, unfollowUser })(UsersContainer);

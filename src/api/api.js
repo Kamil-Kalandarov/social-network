@@ -15,20 +15,26 @@ export const usersAPI = {
         return response.data
       })
   },
-  setCurrentUsersPage(selectedPage, pageSize) {
-    return instance.get(`users?page=${selectedPage}&count=${pageSize}`)
+  follow(userId) {
+    return instance.post(`follow/${userId}`)
       .then(response => {
         return response.data
       })
   },
-  setPrevUsersPage(currentPage, pageSize) {
-    return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+  unFollow(userId) {
+    return instance.delete(`follow/${userId}`)
       .then(response => {
         return response.data
       })
   },
-  setNextUsersPage(currentPage, pageSize) {
-    return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+  getUserProfile(userId) {
+    return instance.get(`profile/${userId}`)
+      .then(response => {
+        return response.data
+      })
+  },
+  authCheck() {
+    return instance.get(`auth/me`)
       .then(response => {
         return response.data
       })

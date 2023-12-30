@@ -1,3 +1,4 @@
+import { usersAPI } from "../api/api";
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -119,22 +120,6 @@ export const setCurrentPage = (currentPage) => {
   };
 };
 
-// переключение на предыдущую страницу
-export const setPrevPage = (currentPage) => {
-  return {
-    type: SET_PREV_PAGE,
-    currentPage
-  };
-};
-
-// переключение на следующую страницу
-export const setNextPage = (currentPage) => {
-  return {
-    type: SET_NEXT_PAGE,
-    currentPage
-  };
-};
-
 // переключение прелоадера
 export const togglePreloader = (loaderSatus) => {
   return {
@@ -150,6 +135,46 @@ export const toggleFollowingProgress = (loadingStatus, userId) => {
     loadingStatus,
     userId
   };
+};
+
+// СОЗДАТЕЛИ САНОК ПОЛУЧАЮТ АРГУМЕНТЫ И ВЫЗЫВЮТ ВНУТРИ СЕБЯ САНКУ (функция, которая диспатчит необходимые экшены и возвращает их обратно редьюсерам):
+// санка получения юзеров
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(togglePreloader(true))
+    usersAPI.getUsers(currentPage, pageSize)
+      .then(data => {
+        dispatch(togglePreloader(false))
+        dispatch(setUsers(data.items))
+        dispatch(setTotalUsers(data.totalCount))
+      });
+  };
+};
+// санка подписки на юзера
+export const followUser = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+    usersAPI.follow(userId)
+      .then(data => {
+        if (data.resultCode === 0) {
+          dispatch(follow(userId))
+        }
+        dispatch(toggleFollowingProgress(false, userId))
+      });
+  };
+};
+// санка отписки от юзера
+export const unfollowUser = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+    usersAPI.unFollow(userId)
+      .then(data => {
+        if (data.resultCode === 0) {
+          dispatch(unfollow(userId))
+        }
+        dispatch(toggleFollowingProgress(false, userId))
+      });
+  };  
 };
 
 export default usersReducer;
