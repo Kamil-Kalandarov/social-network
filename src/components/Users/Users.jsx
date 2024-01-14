@@ -3,7 +3,6 @@ import styles from './users.module.css';
 import defaultAvatar from '../../images/Leonid_Medvedovskij.jpg';
 import Pagination from '../Pagination/Pagination';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 
 const Users = (props) => {
 

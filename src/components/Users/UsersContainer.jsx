@@ -12,30 +12,16 @@ import {
 } from "../../redux/usersReducer";
 import Preloader from '../Preloader/Preloade';
 
-/* UsersContainer выполняет AJAX запросы, а данные из store получает от другой контейнерной компоненты через 'connect' */
+/* UsersContainer получает данные из store от другой контейнерной компоненты через 'connect' */
 class UsersContainer extends React.Component {
 
   componentDidMount() {
     this.props.getUsers(this.props.currentPage, this.props.pageSize)
-    /* this.props.togglePreloader(true)
-    usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-      .then(data => {
-        this.props.togglePreloader(false)
-        this.props.setUsers(data.items)
-        this.props.setTotalUsers(data.totalCount)
-      }); */
   };
 
   onUsersPageClick = (selectedPage) => {
     this.props.setCurrentPage(selectedPage)
     this.props.getUsers(selectedPage, this.props.pageSize)
-    /* this.props.setCurrentPage(selectedPage)
-    this.props.togglePreloader(true)
-    usersAPI.getUsers(selectedPage, this.props.pageSize)
-      .then(data => {
-        this.props.togglePreloader(false)
-        this.props.setUsers(data.items)
-      }); */
   };
 
   /* компонента Users получает данные и колбэки от UsersContainer через пропсы */

@@ -1,4 +1,4 @@
-import { usersAPI } from "../api/api";
+import { authAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -29,9 +29,11 @@ export const setUserData = (userId, login, email) => {
   };
 };
 
+// СОЗДАТЕЛИ САНОК ПОЛУЧАЮТ АРГУМЕНТЫ И ВЫЗЫВЮТ ВНУТРИ СЕБЯ САНКУ (функция, которая диспатчит необходимые экшены и возвращает их обратно редьюсерам):
+// санка получения данных авторизованного юзера
 export const getAuthUserData = () => {
   return (dispatch) => {
-    usersAPI.authCheck()
+    authAPI.authCheck()
       .then(data => {
         if (data.resultCode === 0) {
           const {id, login, email} = data.data;

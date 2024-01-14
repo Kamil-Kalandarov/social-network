@@ -65,6 +65,8 @@ export const setUserProfile = (userProfile) => {
   };
 };
 
+// СОЗДАТЕЛИ САНОК ПОЛУЧАЮТ АРГУМЕНТЫ И ВЫЗЫВЮТ ВНУТРИ СЕБЯ САНКУ (функция, которая диспатчит необходимые экшены и возвращает их обратно редьюсерам):
+// санка получения данных пользователя на чьей странице находимся
 export const getUserProfile = (userId) => {
   return (dispatch) => {
     usersAPI.getUserProfile(userId)
